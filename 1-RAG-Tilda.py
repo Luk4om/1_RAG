@@ -18,7 +18,7 @@ def data_website(url):
     return " ".join(text)
 
 def split_text(text):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=600, chunk_overlap=60)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     # print("Splitter:", splitter.split_text(text))
     
     return splitter.split_text(text)
@@ -39,7 +39,7 @@ def indexing_text(vectors):
 
     return index
 
-def similar_text(query, split, embed_model, index, top_k=3):
+def similar_text(query, split, embed_model, index, top_k=2):
     query_vec = embed_model.encode([query])
     D, I = index.search(np.array(query_vec), top_k)
     
